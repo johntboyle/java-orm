@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import com.orm.annotations.Column;
-import com.orm.annotations.ForeignKey;
 import com.orm.annotations.Getter;
 import com.orm.annotations.PrimaryKey;
 import com.orm.annotations.Setter;
@@ -66,12 +65,7 @@ class MetaModel {
                 return;
             }
             
-            ForeignKey foreignKey = field.getAnnotation(ForeignKey.class);
-            if(foreignKey != null) {
-                foreignKeyFields.add(field);
-                return;
-            }
-            
+
             Column column = field.getAnnotation(Column.class);
             if(column != null) {
                 columnFields.add(field);

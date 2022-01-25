@@ -3,11 +3,12 @@ package com.orm.utils;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class SessionFactory {
 	private Configuration configuration;
-	private static Logger logger = Logger.getLogger(SessionFactory.class);
+	private static Logger logger = LogManager.getLogger(SessionFactory.class);
 	
 	public SessionFactory(Configuration configuration) {
 		super();

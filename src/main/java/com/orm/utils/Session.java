@@ -9,14 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.orm.annotations.Column;
 import com.orm.annotations.PrimaryKey;
 
 public class Session {
 	
-	private static Logger logger = Logger.getLogger(Session.class);
+	private static Logger logger = LogManager.getLogger(Session.class);
 	private HashMap<Class<?>, MetaModel> classes;
 	private Connection connection;
 	
