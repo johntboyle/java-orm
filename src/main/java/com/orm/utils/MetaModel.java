@@ -14,7 +14,7 @@ import com.orm.annotations.PrimaryKey;
 import com.orm.annotations.Setter;
 import com.orm.annotations.Table;
 
-public class MetaModel {
+class MetaModel {
     
     private Class<?> clazz;
     private String name;
@@ -24,7 +24,7 @@ public class MetaModel {
     private HashMap<String, Method> getters;
     private HashMap<String, Method> setters;
     
-    public static MetaModel of(Class<?> clazz) throws IllegalStateException {
+    static MetaModel of(Class<?> clazz) throws IllegalStateException {
         if(clazz.getAnnotation(Table.class) == null) {
             throw new IllegalStateException("Cannot create MetaModel object! Provided class "
                     + clazz.getName() + " is not annotated with @Table");

@@ -27,10 +27,6 @@ public class Session {
 		logger.info("session created");
 	}
 	
-//	public HashMap<Class<?>, HashSet<Object>> getCache(){ return null; }
-//
-//	// returns the cache as a HashMap.
-//	
 	private String sqlTypeSelector(Class<?> clazz) {
 		switch(clazz.getName()) {
 			case "java.lang.String": return "VARCHAR";
@@ -66,7 +62,7 @@ public class Session {
 			e.printStackTrace();
 			return false;
 		}
-		// Sanitization Needed
+		// Sanitation Needed
 		String sql = "create table if not exists " + classModel.getName();
 		sql += "(" + classModel.getPrimaryKey().getAnnotation(PrimaryKey.class).name() + " " + sqlTypeSelector(classModel.getPrimaryKey().getType()) + " primary key";
 		for(Field field : classModel.getColumns()) {
@@ -89,10 +85,7 @@ public class Session {
 			return false;
 		}
 	}
-//
-//	// Adds a class to the ORM. This is the method to use to declare a Class is an
-//	// object inside of the database.
-//	
+
 	public boolean UpdateObjectInDB(final Object obj, final String update_columns){ 
 		// Checks if class has been added
 		if(!classes.containsKey(obj.getClass())) {
@@ -105,7 +98,7 @@ public class Session {
 		MetaModel classModel = classes.get(obj.getClass());
 		String pkName = classModel.getPrimaryKey().getAnnotation(PrimaryKey.class).name();
 		
-		// Sanitization Needed
+		// Sanitation Needed
 		try {
 			String sql = "update " + classModel.getName() + " set ";
 			
@@ -150,12 +143,6 @@ public class Session {
 		return false;
 	}
 	
-	
-	
-//
-//	// Updates the given object in the databse. Update columns is a comma seperated
-//	// lsit fo all columns in the onject which need to be updated
-//	
 	public boolean removeObjectFromDB(final Object primaryKey, final Class<?> clazz) {
 		// Checks if class has been added
 		if (!classes.containsKey(clazz)) {
@@ -167,12 +154,9 @@ public class Session {
 
 		MetaModel classModel = classes.get(clazz);
 		String pkName = classModel.getPrimaryKey().getAnnotation(PrimaryKey.class).name();
-//				// If the pk is not of correct type
-//				if(primaryKeyField.getType() != primaryKey.getClass()) {
-//					return null;
-//				}
 
-		// Sanitization Needed
+
+		// Sanitation Needed
 		String sql = "delete from " + classModel.getName() + " where ";
 
 		sql += pkName;
@@ -192,10 +176,7 @@ public class Session {
 		}
 		return false;
 	}
-
-//
-//	// Removes the given object from the database.
-//	
+	
 	public boolean addObjectToDB(final Object obj){ 
 		// Checks if class has been added
 		if(!classes.containsKey(obj.getClass())) {
@@ -244,7 +225,6 @@ public class Session {
 		return false;
 	}
 
-
 	public Object getObjectFromDB(final Object primaryKey, final Class<?> clazz) {
 		// Checks if class has been added
 		if (!classes.containsKey(clazz)) {
@@ -256,12 +236,8 @@ public class Session {
 
 		MetaModel classModel = classes.get(clazz);
 		String pkName = classModel.getPrimaryKey().getAnnotation(PrimaryKey.class).name();
-//		// If the pk is not of correct type
-//		if(primaryKeyField.getType() != primaryKey.getClass()) {
-//			return null;
-//		}
-		
-		// Sanitization Needed
+
+		// Sanitation Needed
 		String sql = "select * from " + classModel.getName() + " where ";
 
 		sql += pkName;
@@ -299,27 +275,4 @@ public class Session {
 		}
 		return null;
 	}
-//
-//	// Adds the given object to the database.
-//	
-//	public Optional<List<Object>> getListObjectFromDB(final Class<?> clazz, final String columns,
-//			final String conditions){ return null; }
-//
-//	public Optional<List<Object>> getListObjectFromDB(final Class<?> clazz, final String columns,
-//			final String conditions, final String operators){ return null; }
-//
-//	public Optional<List<Object>> getListObjectFromDB(final Class<?> clazz){ return null; }
-//
-//	// Gets a list of all objects in the database which match the included search
-//	// criteria
-//	// columns - comma seperated list of columns to search by.
-//	// conditions - coma seperated list the values the columns should match to.
-//	// operators - comma seperated list of operators to apply to columns (AND/OR){}
-//	// in order that they should be applied.
-//	
-//
-//	public void addAllFromDBToCache(final Class<?> clazz){}
-//	
-//	// Adds all objects currently in the databse of the given clas type to the
-//	// cache.
 }
